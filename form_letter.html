@@ -1,0 +1,52 @@
+<!--
+Generate a personalised call to action
+For each attendee we want to include a customized letter that tanks them
+for attending the conference and provides a list of their representatives
+ -->
+ 
+ <!-- Without using ERB -->
+ form_letter = %{
+  <html>
+   <head>
+     <meta charset="ut-8">
+     <title>Thank You!</title>
+   </head>
+   <body>
+     <h1>Thanks FIRST_NAME!</h1>
+     <p>Thanks for coming to our conference. We couldn't have done it without you!</p>
+     
+     <p>
+       Political activism is at the heart of any democracy and your voice needs to be heard.
+       Please consider reaching out to your following representatives:
+     </p>
+     
+     <table>
+       <tr><th>Legislators</th></tr>
+       <tr><td>LEGISLATORS</td></tr>
+     </table>
+   </body>
+ </html>
+}
+
+<!--
+The "form_letter = %{html_doc}" allows us to store the template as a large
+string in our current application.
+
+Ruby has a few ways to define strings.
+This format %{ String Contents} is once choice when defining a string that
+spans multiple lines.
+
+However placing this large blob of text within our application will
+make it much more difficult to understand the template and the application
+code and thus make it more difficult to change the template and application
+code individually.
+
+Instead of including the template within our application, we could instead
+load the template using the File tools!
+
+It is important to define the form_letter.html in the root of the project
+directory and not in the lib directory. This is because when the application
+runs it assumes the place that you started the application is where all
+the file references will be located. Later, we move the file to a new location
+and are more explicit on defining the location of the template.
+-->
